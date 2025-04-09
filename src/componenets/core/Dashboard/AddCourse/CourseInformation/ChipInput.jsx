@@ -44,7 +44,8 @@ const ChipInput = ({ label, name, placeholder, setValue, errors,register,getValu
       </label>
       {/* chips array to be added */}
       <div className="flex gap-4">
-        {chips.map((chip, index) => (
+        {
+          chips?.map((chip, index) => (
           <div key={index} className="flex gap-4">
             <div className="bg-yellow-100 rounded-lg my-2 opacity-80 text-richblack-900">
               {" "}
