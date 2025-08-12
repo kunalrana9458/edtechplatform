@@ -10,7 +10,7 @@ const ChipInput = ({ label, name, placeholder, setValue, errors,register,getValu
     if (event.key === "," || event.key === "Enter") {
       event.preventDefault();
       const chipValue = event.target.value.trim();
-      if (chipValue && !chips.includes(chipValue)) {
+      if (chipValue && Array.isArray(chips) && !chips.includes(chipValue)) {
         const newChips = [...chips, chipValue];
         setChips(newChips);
         event.target.value = "";
@@ -29,7 +29,8 @@ const ChipInput = ({ label, name, placeholder, setValue, errors,register,getValu
   useEffect(() => {
     register(name,{required:true,validate:(valid) => valid.length > 0})
     if(editCourse){
-      setChips(getValues("courseTags"))
+      const tags = getValues("courseTags")
+      setChips(Array.isArray(tags) ? tags : [])
     }
   },[])
 
